@@ -1,0 +1,145 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #e6f7ff, #d9edff); /* 浅蓝色背景 */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    margin: 20px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #000; /* 标题改为黑色 */
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.nav button {
+    padding: 15px 30px;
+    font-size: 18px;
+    margin: 0 10px;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    color: #333;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav button.active {
+    background-color: #28a745; /* 激活状态为墨绿色 */
+    color: white;
+    box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3); /* 墨绿色阴影 */
+}
+
+.nav button:hover {
+    background-color: #218838; /* 鼠标悬停时的深墨绿色 */
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.form-group {
+    margin-top: 30px;
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background: #f9f9f9;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+    border-color: #28a745; /* 输入框焦点时的墨绿色边框 */
+    background: #e8ffe8; /* 输入框焦点时的浅绿色背景 */
+    outline: none;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.3); /* 墨绿色阴影 */
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 15px 25px;
+    font-size: 18px;
+    background-color: #28a745; /* 墨绿色按钮 */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #218838; /* 鼠标悬停时的深墨绿色 */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.plot {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.hidden {
+    display: none;
+}
+
+#result, #uploadResult, #testResult {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+/* 新增样式 */
+.form-group .input-checkbox {
+    margin-top: 10px; /* 增加上边距 */
+}

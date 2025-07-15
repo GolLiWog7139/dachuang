@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基于机器学习的发动机进气道流场快速预测与重构系统</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>基于机器学习的发动机进气道流场快速预测与重构系统</h1>
+
+        <!-- 导航栏 -->
+        <div class="nav">
+            <button id="predictTab" class="active" style="padding: 18px 30px; font-size: 20px;">
+                模型预测
+            </button>
+            <button id="retrainTab" style="padding: 18px 30px; font-size: 20px;">
+                模型调整
+            </button>
+        </div>
+
+        <!-- 预测功能 -->
+        <div id="predictSection">
+            <h2>模型预测</h2>
+            <form id="predictForm">
+                <div class="form-group">
+                    <label for="Ma">马赫数 (Ma):</label>
+                    <input type="number" id="Ma" name="Ma" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="x">X 坐标 (x):</label>
+                    <input type="number" id="x" name="x" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="y">Y 坐标 (y):</label>
+                    <input type="number" id="y" name="y" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="rho">密度 (ρ):</label>
+                    <input type="number" id="rho" name="rho" step="0.1" optional>
+                </div>
+                <div class="form-group">
+                    <label for="u">X 方向速度 (u):</label>
+                    <input type="number" id="u" name="u" step="0.1" optional>
+                </div>
+                <div class="form-group">
+                    <label for="v">Y 方向速度 (v):</label>
+                    <input type="number" id="v" name="v" step="0.1" optional>
+                </div>
+                <div class="form-group">
+                    <label for="p">压力 (p):</label>
+                    <input type="number" id="p" name="p" step="0.1" optional>
+                </div>
+                <button type="button" onclick="predict()" class="btn">预测</button>
+            </form>
+            <div id="result"></div>
+        </div>
+
+       <!-- 调整模型功能 -->
+    <div id="retrainSection" class="hidden">
+        <h2>模型调整</h2>
+     <form id="uploadForm" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="dataFile">选择数据文件 (.npy):</label>
+            <input type="file" id="dataFile" name="file" accept=".npy" required>
+        </div>
+        <div id="uploadResult"></div> <!-- 文件上传成功提示信息 -->
+        <div class="form-group">
+            <label>选择输入变量：</label>
+            <label><input type="checkbox" class="input-checkbox" name="inputs" value="rho"> 密度 (ρ)</label>
+            <label><input type="checkbox" class="input-checkbox" name="inputs" value="u"> X 方向速度 (u)</label>
+            <label><input type="checkbox" class="input-checkbox" name="inputs" value="v"> Y 方向速度 (v)</label>
+            <label><input type="checkbox" class="input-checkbox" name="inputs" value="p"> 压力 (p)</label>
+            <button type="button" onclick="uploadData()" class="btn">上传数据</button>
+        </div>
+        <div class="form-group">
+            <label for="epoch">训练轮数 (Epoch):</label>
+            <input type="number" id="epoch" name="epoch" min="1" value="20" required>
+        </div>
+        <div class="form-group">
+            <label for="gamma">学习率衰减率 (Gamma):</label>
+            <input type="number" id="gamma" name="gamma" step="0.01" min="0" value="0.4" required>
+        </div>
+        <div class="form-group">
+            <label for="batch_size">批量大小 (Batch Size):</label>
+            <input type="number" id="batch_size" name="batch_size" min="1" value="64" required>
+        </div>
+        </form>
+     <button id="retrainButton" onclick="retrain()" class="btn" disabled>重新训练模型</button>
+      <button id="downloadModelButton" class="btn" disabled>下载模型</button> <!-- 添加下载按钮 -->
+     <div class="plot">
+        <h2>测试结果</h2>
+        <div id="testResult"></div>
+     </div>
+        <!-- 模型训练状态提示 -->
+        <div id="trainingStatusContainer" style="display: none;">
+           <p id="trainingStatus">正在重新训练模型...</p>
+       </div>
+    </div>
+ </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
